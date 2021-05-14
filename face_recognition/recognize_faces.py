@@ -52,7 +52,7 @@ data = pickle.loads(open(args["encodings"], "rb").read())
 print("[INFO] starting video stream...")
 # cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
-time.sleep(2.0)
+# time.sleep(2.0)
 # loop over frames from the video file stream
 fpsReport = 0
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -83,6 +83,7 @@ while True:
 		best_match_index = np.argmin(face_distances)
 		if matches[best_match_index]:
 				name = data["names"][best_match_index]
+				# print (encoding - 1) / (encoding + data["encodings"][best_match_index] - 2) * 100
 		names.append(name)
 		# if True in matches:
 		# 	# find the indexes of all matched faces then initialize a
