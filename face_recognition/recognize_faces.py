@@ -19,10 +19,10 @@ ap.add_argument("-d", "--detection-method", type=str, default="cnn",
 	help="face detection model to use: either `hog` or `cnn`")
 args = vars(ap.parse_args())
 def gstreamer_pipeline(
-    capture_width=3280,
-    capture_height=2464,
-    display_width=1280,
-    display_height=720,
+    capture_width=1280,
+    capture_height=720,
+    display_width=600,
+    display_height=480,
     framerate=30,
     flip_method=0,
 ):
