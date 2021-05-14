@@ -13,10 +13,10 @@ ap.add_argument("-o", "--output", required=True,
 	help="path to output directory")
 args = vars(ap.parse_args())
 def gstreamer_pipeline(
-    capture_width=3280,
-    capture_height=2464,
-    display_width=1280,
-    display_height=720,
+    capture_width=1280,
+    capture_height=720,
+    display_width=600,
+    display_height=480,
     framerate=30,
     flip_method=0,
 ):
@@ -59,7 +59,7 @@ while True:
 	# so we can apply face detection faster
 	ret, frame = cap.read()
 	orig = frame.copy()
-	frame = imutils.resize(frame, width=400)
+	frame = imutils.resize(frame, width=300)
 	# detect faces in the grayscale frame
 	rects = detector.detectMultiScale(
 		cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), scaleFactor=1.1, 
