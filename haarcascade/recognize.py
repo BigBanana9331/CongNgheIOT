@@ -3,10 +3,10 @@ import numpy as np
 import os 
 import time
 def gstreamer_pipeline(
-    capture_width=3280,
-    capture_height=2464,
-    display_width=1280,
-    display_height=720,
+    capture_width=1280,
+    capture_height=720,
+    display_width=640,
+    display_height=480,
     framerate=30,
     flip_method=0,
 ):
@@ -40,11 +40,13 @@ names = ['None', 'Huy', 'Sinh', 'Thong', 'Thinh']
 # Initialize and start realtime video capture
 # cam = cv2.VideoCapture(0)
 cam = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
-cam.set(3, 640) # set video widht
-cam.set(4, 480) # set video height
+# cam.set(3, 640) # set video widht
+# cam.set(4, 480) # set video height
 # Define min window size to be recognized as a face
-minW = 0.1*cam.get(3)
-minH = 0.1*cam.get(4)
+# minW = 0.1*cam.get(3)
+# minH = 0.1*cam.get(4)
+minW = 0.1*640
+minH = 0.1*480
 fpsReport=0
 font = cv2.FONT_HERSHEY_SIMPLEX
 timeStamp = time.time()
