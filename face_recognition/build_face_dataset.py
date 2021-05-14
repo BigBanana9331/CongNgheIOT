@@ -59,7 +59,7 @@ while True:
 	# so we can apply face detection faster
 	ret, frame = cap.read()
 	orig = frame.copy()
-	frame = imutils.resize(frame, width=300)
+	# frame = imutils.resize(frame, width=300)
 	# detect faces in the grayscale frame
 	rects = detector.detectMultiScale(
 		cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), scaleFactor=1.1, 
