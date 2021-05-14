@@ -7,8 +7,8 @@ import os
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-c", "--cascade", required=True,
-	help = "path to where the face cascade resides")
+# ap.add_argument("-c", "--cascade", required=True,
+# 	help = "path to where the face cascade resides")
 ap.add_argument("-o", "--output", required=True,
 	help="path to output directory")
 args = vars(ap.parse_args())
@@ -39,7 +39,7 @@ def gstreamer_pipeline(
         )
     )
 # load OpenCV's Haar cascade for face detection from disk
-detector = cv2.CascadeClassifier(args["cascade"])
+detector = cv2.CascadeClassifier("xml/haarcascade_frontalface_default.xml")
 # initialize the video stream, allow the camera sensor to warm up,
 # and initialize the total number of example faces written to disk
 # thus far
