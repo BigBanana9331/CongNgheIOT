@@ -1,5 +1,5 @@
 # import the necessary packages
-from imutils.video import FPS
+# from imutils.video import FPS
 import numpy as np
 import argparse
 import imutils
@@ -21,10 +21,10 @@ ap.add_argument("-c", "--confidence", type=float, default=0.5,
 	help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 def gstreamer_pipeline(
-    capture_width=3280,
-    capture_height=2464,
-    display_width=1280,
-    display_height=720,
+    capture_width=1280,
+    capture_height=720,
+    display_width=600,
+    display_height=480,
     framerate=30,
     flip_method=0,
 ):
