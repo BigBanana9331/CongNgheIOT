@@ -48,3 +48,5 @@ data = {"encodings": knownEncodings, "names": knownNames}
 f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
+
+# python .\encode_faces.py -i .\dataset\ -e encodings.pkl

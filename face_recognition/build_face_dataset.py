@@ -44,8 +44,8 @@ detector = cv2.CascadeClassifier("xml/haarcascade_frontalface_default.xml")
 # and initialize the total number of example faces written to disk
 # thus far
 print("[INFO] starting video stream...")
-# cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+# cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
 # vs = VideoStream(usePiCamera=True).start()
 time.sleep(2.0)
 total = 0

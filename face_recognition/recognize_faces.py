@@ -50,8 +50,8 @@ data = pickle.loads(open(args["encodings"], "rb").read())
 # initialize the video stream and pointer to output video file, then
 # allow the camera sensor to warm up
 print("[INFO] starting video stream...")
-# cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+# cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
 # time.sleep(2.0)
 # loop over frames from the video file stream
 fpsReport = 0
@@ -72,19 +72,24 @@ while True:
 		model=args["detection_method"])
 	encodings = face_recognition.face_encodings(rgb, boxes)
 	names = []
+	scores = []
     # loop over the facial embeddings
 	for encoding in encodings:
 		# attempt to match each face in the input image to our known
 		# encodings
 		name = "Unknown"
+		score = 0
 		matches = face_recognition.compare_faces(data["encodings"],encoding)
 		# check to see if we have found a match
 		face_distances = face_recognition.face_distance(data["encodings"],encoding)
 		best_match_index = np.argmin(face_distances)
 		if matches[best_match_index]:
 				name = data["names"][best_match_index]
+				score = face_distances[best_match_index]
+				# print(score)
 				# print (encoding - 1) / (encoding + data["encodings"][best_match_index] - 2) * 100
 		names.append(name)
+		scores.append(score)
 		# if True in matches:
 		# 	# find the indexes of all matched faces then initialize a
 		# 	# dictionary to count the total number of times each face
@@ -104,7 +109,7 @@ while True:
 		# # update the list of names
 		# names.append(name)
     # loop over the recognized faces
-	for ((top, right, bottom, left), name) in zip(boxes, names):
+	for ((top, right, bottom, left), name,score) in zip(boxes, names,scores):
 		# rescale the face coordinates
 		top = int(top * r)
 		right = int(right * r)
@@ -115,6 +120,8 @@ while True:
 			(0, 255, 0), 2)
 		y = top - 15 if top - 15 > 15 else top + 15
 		cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
+			0.75, (0, 255, 0), 2)
+		cv2.putText(frame, str(np.round(1-score,2)), (right-10, y), cv2.FONT_HERSHEY_SIMPLEX,
 			0.75, (0, 255, 0), 2)
     # check to see if we are supposed to display the output frame to
 	# the screen
