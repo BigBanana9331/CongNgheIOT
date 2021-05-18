@@ -59,7 +59,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 timeStamp = time.time()
 while True:
 	# grab the frame from the threaded video stream
-	_,frame = cap.read()
+	ret,frame = cap.read()
 	# convert the input frame from BGR to RGB then resize it to have
 	# a width of 750px (to speedup processing)
 	rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
